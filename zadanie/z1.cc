@@ -31,27 +31,20 @@ int main (){
 		unsigned(clk::now().time_since_epoch().count())
 	};
 	std::uniform_int_distribution<> d{10,30};
-	unsigned stone_cout=d(rnd);
-	int user_turn =
-			read_int("Сколько камней"
-					"Берем (1-3)? ");
-	for(unsigned i=0;
-			i<10;++i)
-		std::cout<<
-		d(rnd) <<' ';
+	unsigned stone_count=d(rnd);
 
-/*
-	int i;
-	std::string inp;
-	reee:std::getline(std::cin ,inp);
-	std::stringstream inps{inp};
-	inps >>i;
-
-	if(inps.fail()){
-		std::cout<<"Aaa! \n";
-		goto reee;
+	while(stone_count>0){
+		std::cout<<"Количество камней :"<<stone_count<<std::endl;
+		int user_turn = read_int("Сколько камней берем(1-3)? : \n");
+		if (user_turn<4 && user_turn>0){
+			stone_count=stone_count-user_turn;
+		}
+		else {
+			std::cout<<"Введите корректное число от 1 до 3 :"<<stone_count<<std::endl;
+		}
 	}
 
-	*/
+		std::cout<<d(rnd) <<' ';
+
 	return 0;
 }
